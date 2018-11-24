@@ -1,19 +1,21 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
 
 //Se llaman los archivo que contiene la ruta base /api
 const registerUser = require('./routes/users');
-const createProject = require('./routes/projects')
 const baseApi = require('./routes/api');
+
+//Importar la configuracion para conectar a la base de datos
+const config = require('./database/config');
 
 //middleware para mirar las peticiones en la consola
 const morgan = require('morgan');
 app.use(morgan('dev'));
 
-// Se utiliza la varible para generar el registro con la url de base /api
+// Se utiliza la variable para generar el registro con la url de base /api
 app.use('/api', baseApi);
 app.use('/api', registerUser);
-app.use('/api', createProject);
 
 // Ruta base del servidor con Express
 app.get('/', function(req, res) {
