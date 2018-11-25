@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-
+let bodyParser = require('body-parser');
 //Se llaman los archivo que contiene la ruta base /api
 const registerUser = require('./routes/users');
 const baseApi = require('./routes/api');
+
+//Permite leer el cuerpo en las respuestas del parametro (req -> peticion)
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false })); // si extender esta true permite objetos anidados.
 
 //Importar la configuracion para conectar a la base de datos
 const config = require('./database/config');

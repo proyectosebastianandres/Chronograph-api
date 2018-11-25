@@ -1,20 +1,23 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+const User = require('../database/models/registerUser');
 const router = express.Router();
-
-// use body parser so we can get info from POST and/or URL parameters
-//app.use(bodyParser.urlencoded( { extended : false}));
-//app.use(bodyParser.json());
 
 // Ruta para ver ultimo usuario registrador
 router.get('/user/', function(req, res) {
-    res.send('Ultimo usuario registrado: ');
+    User.find({}, function(err, users){
+        res.send(users);
+    })
 });
   
 // Ruta para crear usuarios
 router.post('/user/register', function(req, res) {
-    res.send('Registrar usuario:');
+    let user = new User(req.body);
+
+    user.save(function(err) {
+        if(err) throw err;
+        res.send('Usuario guardado');
+    })
 });
 
 router.get('/user/login', function(req, res){

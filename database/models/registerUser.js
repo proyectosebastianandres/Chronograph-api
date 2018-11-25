@@ -3,11 +3,12 @@ const mongoose = require('mongoose');
 //dependencia, solo requiere trabajar con ese metodo.
 const { Schema } = mongoose;
 
-const registerUser = new Schema({
-    name: { type: String, required: true },
-    email : { type: String, required: true },
-    password : {type: String, required: true},
-    avatar : { type: String, required: false}
+const newUser = new Schema({
+    name: String,
+    email : String,
+    password : String,
+    avatar : String
 })
 
-module.exports = mongoose.model('registerUser', registerUser);
+
+module.exports = mongoose.model('User', newUser);
