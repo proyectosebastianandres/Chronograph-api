@@ -5,6 +5,7 @@ let bodyParser = require('body-parser');
 //Se llaman los archivo que contiene la ruta base /api
 const registerUser = require('./routes/users');
 const baseApi = require('./routes/api');
+const port = 3000;
 
 //Permite leer el cuerpo en las respuestas del parametro (req -> peticion)
 app.use(bodyParser.json());
@@ -27,6 +28,6 @@ app.get('/', function(req, res) {
 })
 
 // Puerto que se utilizara para entrar al servidor.
-app.listen('3000', function(){
+app.listen(port, function(){
     console.log('Servidor iniciado en el puerto 3000');
 })
